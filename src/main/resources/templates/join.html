@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입 페이지</title>
+</head>
+<body>
+<h1>회원 가입</h1>
+<hr>
+
+<form th:action="@{/join}" method="post">
+    <!-- th:action사용시 csrf토큰값을 hidden타입으로 넘기지 않아도됨 -->
+    아이디 : <input type="text" name="loginId"><br>
+    비밀번호 : <input type="password" name="password"><br>
+    이름 : <input type="text" name="member_name"><br>
+    전화번호 : <input type="text" name="phone_number"><br>
+    이메일 : <input type="text" name="email"><br>
+    <button type="submit">가입하기</button>
+</form>
+</body>
+</html>
