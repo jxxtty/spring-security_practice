@@ -25,18 +25,20 @@ public class MainController {
         return "main";
     }
 
+    // 로그인페이지 이동
     @GetMapping("/login")
-    public String login(){
+    public String login() {
         return "login";
     }
 
+    // 회원가입
     @GetMapping("/join")
-    public String join(@ModelAttribute MemberDto memberDto){
+    public String join(@ModelAttribute MemberDto memberDto) {
         return "join";
     }
 
     @PostMapping("/join")
-    public String join(@ModelAttribute MemberDto memberDto, HttpServletRequest request, Model model){
+    public String join(@ModelAttribute MemberDto memberDto, HttpServletRequest request, Model model) {
         // 연습프로젝트의 간결성을 위해 아이디 중복체크를 하지 않음(새로 생성되는 아이디는 중복이 없다고 가정한다)
         Member saveMember = memberService.join(memberDto);
         model.addAttribute("joinMsg", "회원가입이 완료되었습니다 + " + saveMember.getMember_name());
@@ -44,9 +46,15 @@ public class MainController {
         return "main";
     }
 
+    // 로그인 성공
     @GetMapping("/login/result")
-    public String loginSuccess(){
+    public String loginSuccess() {
         return "member/main";
     }
 
+    // 로그아웃 성공
+    @GetMapping("/member/logout/result")
+    public String logoutSuccess(){
+        return "main";
+    }
 }
