@@ -44,4 +44,9 @@ public class MainController {
         return "main";
     }
 
+    @GetMapping("/login/result")
+    public String loginSuccess(){
+        return "member/main";
+    }
+
 }
