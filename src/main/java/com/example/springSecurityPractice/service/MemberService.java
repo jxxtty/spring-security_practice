@@ -25,8 +25,10 @@ public class MemberService implements UserDetailsService {
     private final MemberRepository memberRepository;
 
     public Member join(MemberDto memberDto) {
+        // 패스워드 암호화
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         memberDto.setPassword(passwordEncoder.encode(memberDto.getPassword()));
+
         Member newMember = Member.builder()
                 .loginId(memberDto.getLoginId())
                 .password(memberDto.getPassword())
@@ -43,7 +45,7 @@ public class MemberService implements UserDetailsService {
         Member findMem = findMemWrapper.get();
 
         List<GrantedAuthority> authorities = new ArrayList<>();
-        if (findMem.getEmail().contains("@pincar.co.kr")) {
+        if (findMem.getEmail().contains("@pincar.co.kr")) { // 이메일로 ADMIN구분
             authorities.add(new SimpleGrantedAuthority(Role.ADMIN.getValue()));
         } else {
             authorities.add(new SimpleGrantedAuthority(Role.MEMBER.getValue()));
